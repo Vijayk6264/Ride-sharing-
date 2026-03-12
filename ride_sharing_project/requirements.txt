@@ -1,0 +1,5 @@
+Car average = 15 km/l
+Distance = 100 km
+2 cars fuel = 13.3 L
+Shared fuel = 6.6 L
+Saving = 6.6 L

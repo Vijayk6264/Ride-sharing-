@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dashboard</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <h2>Welcome {{name}}</h2>
+
+    <form method="POST">
+        <input name="source" placeholder="Source" required>
+        <input name="destination" placeholder="Destination" required>
+        <input name="lat" placeholder="Latitude" required>
+        <input name="lng" placeholder="Longitude" required>
+        <input name="date" type="date" required>
+        <input name="time" type="time" required>
+        <button>Add Ride</button>
+    </form>
+    
+    <h3>Matched Rides (within 10km)</h3>
+    
+    {% for m in matches %}
+        <p>
+            Destination: {{m[3]}}
+            <a href="/chat/{{m[1]}}">Chat</a>
+        </p>
+    {% endfor %}
+    
+<a href="/logout">Logout</a>
+<div id="map" style="height:300px;"></div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
+<script>
+navigator.geolocation.getCurrentPosition(pos=>{
+  let map=new google.maps.Map(document.getElementById("map"),{
+    zoom:10,
+    center:{lat:pos.coords.latitude,lng:pos.coords.longitude}
+  });
+});
+</script>
+
+
+</body>
+</html>
